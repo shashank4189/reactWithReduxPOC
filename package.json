@@ -1,0 +1,25 @@
+{
+  "name": "reactpoc",
+  "version": "1.0.0",
+  "description": "React application",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --hot"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.23.0",
+    "install": "^0.8.7",
+    "npm": "^4.3.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1",
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.4.0",
+    "babel-preset-env": "^1.2.1",
+    "webpack": "^2.2.1"
+  }
+}
