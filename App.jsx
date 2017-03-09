@@ -3,6 +3,7 @@ import Header from './src/components/header.jsx';
 import Footer from './src/components/footer.jsx';
 import LogInButton from './src/components/loginButton.jsx';
 import LogOut from './src/components/logOut.jsx';
+/*import SilverElement from './src/components/silverElement.jsx';*/
 
 
 export default class App extends Component{
@@ -62,7 +63,10 @@ export default class App extends Component{
           <legend>Check Water can be boiled in Temperature  </legend>
           <input type ="text" onChange={this.handleWaterTemperature}
              value={this.state.temperature} />
+          <Element left={<GoldElement />} right={<SilverElement />}/>
+
         </fieldset>
+
         <BoilingVerdict
           celsius={parseFloat(temperature)} />
           <Footer name="Shashank Barnawal" isLogIn ={true}  />
@@ -83,4 +87,45 @@ render(){
 }
 }
 
+
+
+function goldElement (){
+
+    return <div style="background-color:red"> Hello Gold</div>
+
+}
+
+class  GoldElement extends React.Component{
+  render(){
+    return(  <div> Hello Gold</div>)
+  }
+}
+
+
+ class  SilverElement extends React.Component{
+  render(){
+    return(  <div> Hello Silver</div>)
+  }
+}
+
+
+class Element extends Component{
+  render(){
+    return (
+
+      <div className="SplitPane">
+        <div className="SplitPane-left">
+          {this.props.left}
+        </div>
+        <div className="SplitPane-right">
+          {this.props.right}
+        </div>
+      </div>
+
+
+    )
+  }
+}
+
+/*left={<goldElement />} right={<silverElement />}*/
 
