@@ -3,18 +3,25 @@
  */
 
 import React from 'react';
-import rend1 from 'react-dom';
+import rend from 'react-dom';
 import App from './App.jsx';
-import {Router, IndexRoute,Link, Route, browserHistory} from 'react-router';
+import Header from './src/components/header.jsx';
+import Footer from './src/components/footer.jsx';
+import LogOut from './src/components/logOut.jsx';
+import LogIn from './src/components/loginButton.jsx';
+import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
 
-function tick() {
-  //rend1.render(<App  />, document.getElementById('mainApp'));
-  rend1.render((
-    <Router history ={browserHistory}>
+
+rend.render((
+    <Router history ={hashHistory}>
       <Route path="/" component={App}>
-      <Route></Route>
+        <IndexRoute component = {Header} />
+        <Route path="/footer" component={Footer} />
+        <Route path="/logOut" component={LogOut} />
+        <Route path="/logIn" component={LogIn} />
       </Route>
+      </Router>
     ), document.getElementById('mainApp'));
-}
 
-setInterval(tick,1000);
+
+/*setInterval(tick,1000)*/

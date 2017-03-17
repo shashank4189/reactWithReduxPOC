@@ -9,7 +9,7 @@ import LogOut from './src/components/logOut.jsx';
 export default class App extends Component{
   constructor(props){
     super(props);
-
+/*
     this.handleLogInEvent =  this.handleLogInEvent.bind(this);
     this.handleLogOutEvent =  this.handleLogOutEvent.bind(this);
     this.handleSubmitEvent =  this.handleSubmitEvent.bind(this);
@@ -34,21 +34,29 @@ export default class App extends Component{
   }
 
   handleWaterTemperature(event){
-    this.setState ({temperature:event.target.value});
+    this.setState ({temperature:event.target.value});*/
   }
 
 
   render(){
-    const isLogIn = this.state.isLoggedIn;
+   /* const isLogIn = this.state.isLoggedIn;
     const temperature = this.state.temperature;
     let button =null;
     if(isLogIn){
       button= <LogOut onClick={this.handleLogOutEvent}/>
     }else{
       button=<LogInButton onClick={this.handleLogInEvent} />
-    }
+    }*/
     return (
-      <form onSubmit={this.handleSubmitEvent}>
+
+        <div>
+          hello
+          {this.props.children}
+        </div>
+
+
+
+    /*  <form onSubmit={this.handleSubmitEvent}>
       <div>
        <Header />
 
@@ -71,13 +79,13 @@ export default class App extends Component{
           celsius={parseFloat(temperature)} />
           <Footer name="Shashank Barnawal" isLogIn ={true}  />
       </div>
-      </form>
+      </form>*/
     )
   }
 }
 
 
-class BoilingVerdict extends Component{
+/*class BoilingVerdict extends Component{
 
 render(){
   if (this.props.celsius >= 100) {
@@ -125,7 +133,7 @@ class Element extends Component{
 
     )
   }
-}
+}*/
 
 /*left={<goldElement />} right={<silverElement />}*/
 
