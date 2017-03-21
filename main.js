@@ -5,9 +5,16 @@
 import React from 'react';
 import rend1 from 'react-dom';
 import App from './App.jsx';
+import {createStore} from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './src/reducers/combinedReducer.js';
 
-function tick() {
-  rend1.render(<App  />, document.getElementById('mainApp'));
-}
+const store = createStore(reducer);
 
-setInterval(tick,1000);
+
+  rend1.render(
+    <Provider state={store} >
+    <App  />
+    </Provider>
+      , document.getElementById('mainApp'));
+
