@@ -3,8 +3,22 @@
  */
 
 import React from 'react';
-import rend from 'react-dom';
+import rend1 from 'react-dom';
 import App from './App.jsx';
+import {createStore} from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './src/reducers/combinedReducer.js';
+
+const store = createStore(reducer);
+
+
+  rend1.render(
+    <Provider store={store} >
+    <App  />
+    </Provider>
+    , document.getElementById('mainApp'));
+
+/*
 import Header from './src/components/header.jsx';
 import Footer from './src/components/footer.jsx';
 import LogOut from './src/components/logOut.jsx';
@@ -24,4 +38,5 @@ rend.render((
     ), document.getElementById('mainApp'));
 
 
-/*setInterval(tick,1000)*/
+*/
+
