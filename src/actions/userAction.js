@@ -10,7 +10,7 @@ export function deleteUser(data){
 
 export function getUser(data){
   console.log(data);
- return{ type: 'GET_USER',
+  return{ type: 'GET_USER',
    payload:data
  };
 }

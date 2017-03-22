@@ -26,7 +26,6 @@ const store = createStore(reducer);
     store.dispatch(deleteUser(data));
   }
    createUserItem(){
-    debugger;
     console.log('guu',this.props.users);
     return this.props.users.map((user)=>{
       return(
