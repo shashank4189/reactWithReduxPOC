@@ -4,12 +4,12 @@
 import React,{Component} from 'react';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import {createStore} from 'redux';
-import reducer from '../reducers/combinedReducer';
 import dummyData  from '../data/dummyData';
 import _  from 'lodash';
 import {deleteUser, getUser}  from '../actions/userAction';
-const store = createStore(reducer);
+import {configureStore} from '../store/appStore.jsx';
+
+const store =configureStore();
 
  class UserList extends Component{
   constructor(props){

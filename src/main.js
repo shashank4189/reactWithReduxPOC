@@ -4,12 +4,13 @@
 
 import React from 'react';
 import rend1 from 'react-dom';
-import App from './App.jsx';
-import {createStore} from 'redux';
+import App from '../App.jsx';
 import { Provider } from 'react-redux';
-import reducer from './src/reducers/combinedReducer.js';
+import {configureStore} from './store/appStore.jsx';
 
-const store = createStore(reducer);
+const store =configureStore();
+
+
 
 
   rend1.render(
