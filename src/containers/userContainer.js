@@ -17,20 +17,27 @@ const store = createStore(reducer);
   }
 
    componentWillMount(){
-     this.props.getUserList();
+     this.props.getUserList(dummyData.dummyTodos);
    }
 
-  deleteUserbyID(id){
-   var data =  _.remove(dummyData.dummyTodos, {id: id});
-    console.log(data);
-    store.dispatch(deleteUser(data));
+   componentWillReceiveProps(nextProp){
+     console.log('componentWillReceiveProps '+ JSON.stringify(nextProp));
   }
-   createUserItem(){
-    console.log('guu',this.props.users);
-    return this.props.users.map((user)=>{
+
+  deleteUserbyID(id){
+   var data  = _.filter(this.props.users, function(currentObject) {
+     return currentObject.id != id;
+   });
+
+    //store.dispatch(deleteUser(data));
+    this.props.deleteUser(data);
+    console.log( this.props.users);
+  }
+   createUserItem(users){
+    return users.map((user)=>{
       return(
-        <div>
-        <li key={user.id}>{user.text} </li>
+        <div key={user.id}>
+        <li >{user.text} </li>
         <button type ="button"  onClick={this.deleteUserbyID.bind(this,user.id)}>delete</button>
         </div>
       )
@@ -40,7 +47,7 @@ const store = createStore(reducer);
   render(){
     return(
       <ul>
-        {this.createUserItem()}
+        {this.createUserItem(this.props.users)}
       </ul>
     )
   }
@@ -48,14 +55,17 @@ const store = createStore(reducer);
 
 function mapStateToProps(state){
   return {
-    users:state.users
+    users:state.users.users
   };
 }
 
 function mapDispatchToProps(dispatch){
   return {
-    getUserList:()=> {
-    dispatch(getUser(dummyData.dummyTodos))
+    getUserList:(data)=> {
+    dispatch(getUser(data))
+    },
+    deleteUser:(data)=> {
+      dispatch(deleteUser(data))
     }
   }
 }
