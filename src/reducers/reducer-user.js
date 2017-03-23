@@ -6,12 +6,11 @@ export default function(state= initialState, action){
 
   switch(action.type){
     case 'DELETE_USER':
-      return Object.assign({},state,
-        {users:action.payload});
+      console.log('ki',action.payload);
+      return action.payload;
 
     case 'GET_USER':
-      return Object.assign({},state,
-        {users:action.payload});
+      return action.payload;
     default:
       return state;
   }

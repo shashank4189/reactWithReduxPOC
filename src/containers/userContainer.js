@@ -21,12 +21,14 @@ const store = createStore(reducer);
    }
 
   deleteUserbyID(id){
-   var data =  _.remove(dummyData.dummyTodos, {id: id});
-    console.log(data);
+   var data  = _.filter(this.props.users, function(currentObject) {
+     return currentObject.id != id;
+   });
+   console.log(data);
+   debugger;
     store.dispatch(deleteUser(data));
   }
    createUserItem(){
-    debugger;
     console.log('guu',this.props.users);
     return this.props.users.map((user)=>{
       return(
