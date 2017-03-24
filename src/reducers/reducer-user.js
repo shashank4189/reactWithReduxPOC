@@ -6,7 +6,7 @@ export default function(state= initialState, action){
 
   switch(action.type){
     case 'DELETE_USER':
-      console.log('DELETE_USER',action.payload);
+      console.log('REDUCER_DELETE_USER',action.payload);
       return { ...state, users: action.payload, error:null};
 
     case 'GET_USER':
