@@ -77,6 +77,7 @@ const validate = values => {
   console.log('fwfwf',values);
   const errors = {}
   const requiredFields = [ 'username', 'password']
+  debugger;
   requiredFields.forEach(field => {
     if (!values[ field ]) {
       errors[ field ] = 'Required'
