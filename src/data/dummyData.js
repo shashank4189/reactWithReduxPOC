@@ -8,6 +8,10 @@ const  data= {
     {id: 1, isDone: false, text: 'design actions'},
     {id: 2, isDone: false, text: 'implement reducer'},
     {id: 3, isDone: false, text: 'connect components'}
+  ],
+
+  userData : [
+    {id: 0, userName: 'shashank', password: 'shashank1!'}
   ]
 }
 export default data;

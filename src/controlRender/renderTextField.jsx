@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField';
 export const renderTextField = props => (
   <TextField hintText={props.label}
              floatingLabelText={props.label}
-             errorText={props.meta.touched && props.meta.error}
+              errorText={props.meta.touched && props.meta.error}
              {...props.input}
              {...props.custom}
   />

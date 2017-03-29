@@ -10,9 +10,11 @@ import PersonAdd from 'material-ui/svg-icons/social/person-add';
 import Help from 'material-ui/svg-icons/action/help';
 import {Link} from 'react-router';
 import ThemeDefault from '../multiTheme/theme.jsx';
-/*import {onLogin,onLoginFailure,onLoginSuccess} from '../actions/login.jsx';*/
+import {onLogin,onLoginFailure,onLoginSuccess} from '../actions/signInAction';
 import { reduxForm, Field, SubmissionError } from 'redux-form/immutable';
 import { renderTextField }   from '../controlRender/renderTextField.jsx';
+import data  from '../data/dummyData';
+import _  from 'lodash';
 
 const styles = {
   loginContainer: {
@@ -87,16 +89,19 @@ const validate = values => {
 }
 
 const validateAndSignInUser=(values, dispatch)=> {
-  /*return dispatch(onLogin(values))
+    let logInUser =_.filter( data.userData , function(item) {
+      return item == values.username & item == values.password
+    })
+
+  return dispatch(onLogin(logInUser))
     .then((result) => {
       if (result.value.data.Status !== "success") {
         dispatch(onLoginFailure(result.payload.data));
-        throw new SubmissionError(result.payload.data);
+       // throw new SubmissionError(result.payload.data);
       }
-      localStorage.setItem('jwtToken', result.value.data.token);
+      //localStorage.setItem('jwtToken', result.value.data.token);
       dispatch(onLoginSuccess(result.value.data.objdata));
-    });*/
-    console.log('LogIn values', values);
+    });
 };
 
 class signIn extends Component {
