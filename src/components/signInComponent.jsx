@@ -97,7 +97,7 @@ const validateAndSignInUser=(values, dispatch)=> {
       console.log('result',result);
       if (result.value.Status !== "Success") {
         dispatch(onLoginFailure(result.value.data));
-       // throw new SubmissionError(result.payload.data);
+        throw new SubmissionError(result.value.data);
       }else {
         //localStorage.setItem('jwtToken', result.value.data.token);
         dispatch(onLoginSuccess(result.value.data.objdata));
@@ -110,14 +110,16 @@ class signIn extends Component {
     router: PropTypes.object
   };
 
-  /*componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
+    console.log('nextProps.user' ,nextProps);
     if (nextProps.user.status === 'authenticated' && !nextProps.user.error) {
       this.context.router.push('/');
     }
     if (nextProps.user.status === 'signin' && !nextProps.user.user && nextProps.user.error && !this.props.user.error) {
       alert(nextProps.user.error.message);
     }
-  }*/
+  }
+
 
   render() {
     const {asyncValidating, handleSubmit, submitting} = this.props;
@@ -129,7 +131,7 @@ class signIn extends Component {
               <form onSubmit={ handleSubmit(validateAndSignInUser) }>
                 <div>
 
-              <Field name="username" type="text" label="User Name" component={renderTextField} />
+                 <Field name="username" type="text" label="User Name" component={renderTextField} />
                   <Field name="password" type="password" label="Password"  component={renderTextField}/>
                 </div>
                 <div>
