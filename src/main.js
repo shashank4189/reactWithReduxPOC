@@ -9,10 +9,11 @@ import { Provider } from 'react-redux';
 import {configureStore} from './store/appStore.jsx';
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
 import SignIn from './pageMediator/signInMediator.jsx';
+import Dashboard from './pageMediator/dashboardMediator.jsx';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-/*
+
 import Footer from '../src/components/footer.jsx';
-import LogOut from '../src/components/logOut.jsx';
+/*import LogOut from '../src/components/logOut.jsx';
 import LogIn from '../src/components/loginButton.jsx';
 */
 injectTapEventPlugin();
@@ -23,7 +24,7 @@ const store =configureStore();
       <Router history ={hashHistory}>
         <Route path="/signIn" component={SignIn} />
         <Route path="/" component={App}>
-         {/* <IndexRoute component = {Header} />*/}
+          <IndexRoute component = {Dashboard} />
          {/* <Route path="/footer" component={Footer} />
           <Route path="/logOut" component={LogOut} />
           <Route path="/logIn" component={LogIn} />*/}
