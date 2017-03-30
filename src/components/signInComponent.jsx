@@ -100,7 +100,7 @@ const validateAndSignInUser=(values, dispatch)=> {
         throw new SubmissionError(result.value.data);
       }else {
         //localStorage.setItem('jwtToken', result.value.data.token);
-        dispatch(onLoginSuccess(result.value.data.objdata));
+        dispatch(onLoginSuccess(result.value.data));
       }
     });
 };
@@ -112,10 +112,11 @@ class signIn extends Component {
 
   componentWillReceiveProps(nextProps) {
     console.log('nextProps.user' ,nextProps);
-    if (nextProps.user.status === 'authenticated' && !nextProps.user.error) {
+    debugger;
+    if (nextProps.signIn.status === 'authenticated' && !nextProps.signIn.error) {
       this.context.router.push('/');
     }
-    if (nextProps.user.status === 'signin' && !nextProps.user.user && nextProps.user.error && !this.props.user.error) {
+    if (nextProps.signIn.status === 'signin' && !nextProps.signIn.user && nextProps.signIn.error && !this.props.signIn.error) {
       alert(nextProps.user.error.message);
     }
   }

@@ -6,7 +6,9 @@ import SignComp from '../components/signInComponent.jsx';
 
 
 function mapStateToProps(state){
-  signIn:state.signIn;
+  return {
+    signIn:state.signIn
+  };
 }
 
 

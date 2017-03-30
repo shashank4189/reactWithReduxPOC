@@ -9,12 +9,13 @@ import { Provider } from 'react-redux';
 import {configureStore} from './store/appStore.jsx';
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
 import SignIn from './pageMediator/signInMediator.jsx';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 /*
 import Footer from '../src/components/footer.jsx';
 import LogOut from '../src/components/logOut.jsx';
 import LogIn from '../src/components/loginButton.jsx';
 */
-
+injectTapEventPlugin();
 const store =configureStore();
 
   rend1.render(

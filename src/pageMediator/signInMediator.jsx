@@ -1,7 +1,7 @@
 
 
 import  React ,{Component} from 'react';
-import  SignIn from '../components/signInComponent.jsx';
+import  SignIn from '../containers/signInContainer.jsx';
 
 
 
