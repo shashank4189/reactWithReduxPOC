@@ -22,7 +22,7 @@ export default class App extends Component {
   }
 
   render() {
-    let navDrawerOpen  =this.state;
+    let {navDrawerOpen}  =this.state;
     const paddingLeftDrawerOpen = 236;
     const styles = {
       header: {
@@ -48,7 +48,7 @@ export default class App extends Component {
         {/*  {navDrawerOpen}*/}
          <Header styles={styles.header}
           handleChangeRequestNavDrawer={this.handleChangeRequestNavDrawer.bind(this)} />
-          <LeftDrawer menus={[]} navDrawerOpen={true}  />
+          <LeftDrawer menus={[]} navDrawerOpen={navDrawerOpen}  />
           <div style={styles.container}>
             {this.props.children}
           </div>
