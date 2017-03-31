@@ -55,7 +55,7 @@ class LeftDrawer extends Component {
 
       <Drawer
         docked={true}
-        open={true}>{/* this.props.navDrawerOpen*/}
+        open={this.props.navDrawerOpen}>
         <div style={styles.logo}>
           Issue Tracker
         </div>
