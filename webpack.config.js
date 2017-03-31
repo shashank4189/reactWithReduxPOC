@@ -20,10 +20,14 @@ var config = {
         query: {
           presets: ['es2015', 'react','stage-1']
         }
-      }/*,
-      {test: /\.(jpe?g|png|gif)$/i, loader: 'file?name=[name].[ext]'}*/
+      },
+      {test: /(\.css|\.scss)$/, loaders: ['style-loader', 'css-loader?sourceMap', 'postcss-loader', 'sass-loader?sourceMap']},
+
+      {test: /\.(jpe?g|png|gif)$/i, loader: 'file-loader?name=[name].[ext]'}
     ]
-  }
+  },
+
+
 }
 
 module.exports = config;

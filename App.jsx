@@ -1,6 +1,7 @@
 import React ,{Component} from 'react';
 import UserList  from './src/pageMediator/userMediator.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import withWidth, {LARGE, SMALL} from 'material-ui/utils/withWidth';
 import ThemeDefault from './src/multiTheme/theme.jsx';
 import Header from './src/components/header.jsx';
 import LeftDrawer from './src/components/leftDrawer.jsx';
@@ -8,6 +9,12 @@ import LeftDrawer from './src/components/leftDrawer.jsx';
 
 
 export default class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      navDrawerOpen: false
+    };
+  }
   handleChangeRequestNavDrawer(){
     this.setState({
       navDrawerOpen: !this.state.navDrawerOpen
@@ -38,9 +45,10 @@ export default class App extends Component {
       </MuiThemeProvider>*/
       <MuiThemeProvider muiTheme={ThemeDefault}>
         <div>
+        {/*  {navDrawerOpen}*/}
          <Header styles={styles.header}
           handleChangeRequestNavDrawer={this.handleChangeRequestNavDrawer.bind(this)} />
-          <LeftDrawer menus={[]} navDrawerOpen={navDrawerOpen}  />
+          <LeftDrawer menus={[]} navDrawerOpen={true}  />
           <div style={styles.container}>
             {this.props.children}
           </div>

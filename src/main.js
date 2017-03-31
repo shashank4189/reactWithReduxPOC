@@ -7,7 +7,8 @@ import rend1 from 'react-dom';
 import App from '../App.jsx';
 import { Provider } from 'react-redux';
 import {configureStore} from './store/appStore.jsx';
-import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
+import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
+import 'flexboxgrid/css/flexboxgrid.css';
 import SignIn from './pageMediator/signInMediator.jsx';
 import Dashboard from './pageMediator/dashboardMediator.jsx';
 import injectTapEventPlugin from 'react-tap-event-plugin';
