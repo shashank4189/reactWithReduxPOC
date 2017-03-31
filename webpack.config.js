@@ -21,10 +21,11 @@ var config = {
           presets: ['es2015', 'react','stage-1']
         }
       },
-      {test: /(\.css|\.scss)$/, loaders: ['style-loader', 'css-loader?sourceMap', 'postcss-loader', 'sass-loader?sourceMap']},
+      {test: /(\.css|\.scss)$/, loaders: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap']},
 
       {test: /\.(jpe?g|png|gif)$/i, loader: 'file-loader?name=[name].[ext]'}
     ]
+    /*'postcss-loader'*/
   },
 
 
