@@ -79,7 +79,6 @@ const validate = values => {
   console.log('fwfwf',values);
   const errors = {}
   const requiredFields = [ 'username', 'password']
-  debugger;
   requiredFields.forEach(field => {
     if (!values[ field ]) {
       errors[ field ] = 'Required'
@@ -90,17 +89,19 @@ const validate = values => {
 
 const validateAndSignInUser=(values, dispatch)=> {
     let logInUser =_.filter( data.userData , function(item) {
-      return item == values.username & item == values.password
+      return item.userName == values.username & item.password == values.password
     })
 
   return dispatch(onLogin(logInUser))
     .then((result) => {
-      if (result.value.data.Status !== "success") {
-        dispatch(onLoginFailure(result.payload.data));
+      console.log('result',result);
+      if (result.value.Status !== "Success") {
+        dispatch(onLoginFailure(result.value.data));
        // throw new SubmissionError(result.payload.data);
+      }else {
+        //localStorage.setItem('jwtToken', result.value.data.token);
+        dispatch(onLoginSuccess(result.value.data.objdata));
       }
-      //localStorage.setItem('jwtToken', result.value.data.token);
-      dispatch(onLoginSuccess(result.value.data.objdata));
     });
 };
 
