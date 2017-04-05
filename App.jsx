@@ -15,15 +15,15 @@ export default class App extends Component {
   }
 
   render() {
-    let navDrawerOpen  =true //this.state;
+    let navDrawerOpen  =this.state;
     const paddingLeftDrawerOpen = 236;
     const styles = {
       header: {
         paddingLeft: navDrawerOpen ? paddingLeftDrawerOpen : 0
       },
       container: {
-        margin: '80px 20px 20px 15px'//,
-        //paddingLeft: navDrawerOpen && this.props.width !== SMALL ? paddingLeftDrawerOpen : 0
+        margin: '80px 20px 20px 15px',
+        paddingLeft: navDrawerOpen && this.props.width !== SMALL ? paddingLeftDrawerOpen : 0
       }
     };
     return (
@@ -39,8 +39,8 @@ export default class App extends Component {
       <MuiThemeProvider muiTheme={ThemeDefault}>
         <div>
          <Header styles={styles.header}
-                  handleChangeRequestNavDrawer={this.handleChangeRequestNavDrawer.bind(this)}/>
-          <LeftDrawer menus={modules} navDrawerOpen={navDrawerOpen}  />
+          handleChangeRequestNavDrawer={this.handleChangeRequestNavDrawer.bind(this)} />
+          <LeftDrawer menus={[]} navDrawerOpen={navDrawerOpen}  />
           <div style={styles.container}>
             {this.props.children}
           </div>

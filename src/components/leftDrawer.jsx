@@ -26,7 +26,7 @@ const styles = {
   avatar: {
     div: {
       padding: '15px 0 20px 15px',
-      backgroundImage:  'url(' + require('../images/material_bg.png') + ')',
+     // backgroundImage:  'url(' + require('../images/material_bg.png') + ')',
       height: 45
     },
     icon: {
@@ -63,7 +63,7 @@ class LeftDrawer extends Component {
           <Avatar src="https://s-media-cache-ak0.pinimg.com/236x/e2/28/b3/e228b3b55721db68685163e603d123b0.jpg"
                   size={50}
                   style={styles.avatar.icon}/>
-          <span style={styles.avatar.span}>Meesam</span>
+          <span style={styles.avatar.span}>Shashank Barnawal</span>
         </div>
         <div>
           {/*{this.props.menus.map((menu, index) =>
