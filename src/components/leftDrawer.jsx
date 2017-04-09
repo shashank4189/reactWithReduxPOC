@@ -55,7 +55,7 @@ class LeftDrawer extends Component {
 
       <Drawer
         docked={true}
-        open={true}>  {this.props.navDrawerOpen}
+        open={this.props.navDrawerOpen}>
         <div style={styles.logo}>
           Issue Tracker
         </div>
@@ -66,15 +66,15 @@ class LeftDrawer extends Component {
           <span style={styles.avatar.span}>Shashank Barnawal</span>
         </div>
         <div>
-          {/*{this.props.menus.map((menu, index) =>
+          {this.props.menus.map((menu, index) =>
             <MenuItem
               key={index}
               style={styles.menuItem}
-              primaryText={menu.MenuName}
+              primaryText={menu.moduleName}
               leftIcon={<ActionLabel color={fullWhite} />}
-              containerElement={<Link to={menu.MenuRoute}/>}
+              containerElement={<Link to={menu.routeName}/>}
             />
-          )}*/}
+          )}
         </div>
       </Drawer>
     )

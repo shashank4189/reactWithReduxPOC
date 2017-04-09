@@ -7,7 +7,6 @@ var config = {
   },
 
   devServer: {
-    inline: true,
     port: 5050
   },
 
@@ -26,6 +25,7 @@ var config = {
       {test: /\.(jpe?g|png|gif)$/i, loader: 'file-loader?name=[name].[ext]'}
         /*'postcss-loader'*/
     ]
+    /*'postcss-loader'*/
   },
 
 

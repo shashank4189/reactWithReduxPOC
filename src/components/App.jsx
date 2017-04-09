@@ -1,10 +1,11 @@
 import React ,{Component} from 'react';
-import UserList  from './src/pageMediator/userMediator.jsx';
+import UserList  from '../pageMediator/userMediator.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import withWidth, {LARGE, SMALL} from 'material-ui/utils/withWidth';
-import ThemeDefault from './src/multiTheme/theme.jsx';
-import Header from './src/components/header.jsx';
-import LeftDrawer from './src/components/leftDrawer.jsx';
+import ThemeDefault from '../multiTheme/theme.jsx';
+import Header from './header.jsx';
+import LeftDrawer from './leftDrawer.jsx';
+import Dashboard from '../pageMediator/dashboardMediator.jsx';
 
 
 
@@ -15,6 +16,18 @@ export default class App extends Component {
       navDrawerOpen: false
     };
   }
+
+  componentWillReceiveProps(nextProps){
+    if(this.props.width !== nextProps.width){
+     this.setState({navDrawerOpen: nextProps.width === LARGE});
+    }
+
+  }
+
+  componentWillMount(){
+      this.props.fetchModules();
+  }
+
   handleChangeRequestNavDrawer(){
     this.setState({
       navDrawerOpen: !this.state.navDrawerOpen
@@ -22,7 +35,7 @@ export default class App extends Component {
   }
 
   render() {
-    let navDrawerOpen  =this.state;
+    let {navDrawerOpen}  =this.state;
     const paddingLeftDrawerOpen = 236;
     const styles = {
       header: {
@@ -34,23 +47,15 @@ export default class App extends Component {
       }
     };
     return (
-      /*<MuiThemeProvider muiTheme={ThemeDefault}>
-        <div>
-        {this.props.children}
-        <h3>User List</h3>
-        <hr />
-        <h1>User Details</h1>
-        <UserList />
-      </div>
-      </MuiThemeProvider>*/
       <MuiThemeProvider muiTheme={ThemeDefault}>
         <div>
-        {/*  {navDrawerOpen}*/}
-         <Header styles={styles.header}
+      <Header styles={styles.header}
           handleChangeRequestNavDrawer={this.handleChangeRequestNavDrawer.bind(this)} />
-          <LeftDrawer menus={[]} navDrawerOpen={true}  />
+          <LeftDrawer menus={this.props.modules} navDrawerOpen={navDrawerOpen}  />
+
           <div style={styles.container}>
             {this.props.children}
+
           </div>
         </div>
       </MuiThemeProvider>

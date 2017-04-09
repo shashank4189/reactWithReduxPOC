@@ -1,3 +1,8 @@
 
 
 1-  Never start reference variable from small letter.
+
+
+Mongo Rules -
+
+1- Mongo's collection name should be started from small letter.
