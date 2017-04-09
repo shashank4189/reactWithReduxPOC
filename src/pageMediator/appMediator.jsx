@@ -6,7 +6,9 @@ export default class appMediator extends Component{
 
     render(){
         return(
-          <App />
+          <App >
+              {this.props.children}
+          </App>
         )
     }
 }

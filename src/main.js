@@ -25,8 +25,8 @@ const store =configureStore();
       <Router history ={hashHistory}>
         <Route path="/signIn" component={SignIn} />
         <Route path="/" component={App}>
-          <IndexRoute component = {Dashboard} />
-            <Route path="/logOut" component={LogOut} />
+          <IndexRoute component={Dashboard} />
+          {/*  <Route path="/logOut" component={Dashboard} />*/}
          {/* <Route path="/footer" component={Footer} />
           <Route path="/logOut" component={LogOut} />
           <Route path="/logIn" component={LogIn} />*/}
@@ -34,5 +34,4 @@ const store =configureStore();
       </Router>
     </Provider>
     , document.getElementById('mainApp'));
-
 
