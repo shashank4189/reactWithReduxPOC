@@ -1,6 +1,6 @@
 
 
-1-  Never start reference variable from small letter.
+1-  Never start component reference variable from small letter.
 
 
 Mongo Rules -
