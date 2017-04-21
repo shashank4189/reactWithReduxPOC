@@ -16,7 +16,6 @@ class UserList extends Component {
   }
 
   componentWillReceiveProps(nextProp){
-    console.log('componentWillReceiveProps '+ JSON.stringify(nextProp));
   }
 
   deleteUserbyID(id){
@@ -26,7 +25,6 @@ class UserList extends Component {
 
    // store.dispatch(deleteUser(data));
     this.props.deleteUser(data);
-    console.log('deleteUserbyID', store.getState());
   }
   createUserItem(users){
     return users.map((user)=>{

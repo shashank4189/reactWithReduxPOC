@@ -15,7 +15,6 @@ export default  function(state =initialState ,action){
       return {...state,user:null,status:'signin',error:null};
 
     case ON_LOGIN_SUCCESS:
-      console.log('Reducer ON_LOGIN_SUCCESS',action);
       return {...state,user:action.payload,status:'authenticated',error:null};
 
     case ON_LOGIN_FAILURE:

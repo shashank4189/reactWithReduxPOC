@@ -38,3 +38,5 @@ mongoose.connection.close(function(){
 require('app/models/userModel');
 require('app/models/appMenuModel');
 require('app/models/moduleModel');
+require('app/models/projectTypeModel');
+require('app/models/projectModel');

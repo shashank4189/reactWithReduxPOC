@@ -13,7 +13,5 @@ let projectSchema=new mongoose.Schema({
   Description:{type:String, required:true},
 });
 
-//projectSchema.plugin(explain);
-
-module.exporst=mongoose.model('Projects',projectSchema);
+module.exports=mongoose.model('Projects',projectSchema);
 })();

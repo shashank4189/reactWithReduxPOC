@@ -12,11 +12,12 @@ import 'flexboxgrid/css/flexboxgrid.css';
 import SignIn from './pageMediator/signInMediator.jsx';
 import Dashboard from './pageMediator/dashboardMediator.jsx';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import NewProject from './pageMediator/newProjectMediator.jsx';
+import ProjectList from './pageMediator/projectListMediator.jsx';
+/*import NewProject from './pageMediator/newProjectMediator.jsx';*/
 import LogOut from '../src/components/logOut.jsx';
 import Footer from '../src/components/footer.jsx';
-/*import LogOut from '../src/components/logOut.jsx';
-import LogIn from '../src/components/loginButton.jsx';
-*/
+
 injectTapEventPlugin();
 const store =configureStore();
 
@@ -26,7 +27,8 @@ const store =configureStore();
         <Route path="/signIn" component={SignIn} />
         <Route path="/" component={App}>
           <IndexRoute component={Dashboard} />
-          {/*  <Route path="/logOut" component={Dashboard} />*/}
+          <Route path="/newproject" component={NewProject} />
+          <Route path="/projects" component={ProjectList} />
          {/* <Route path="/footer" component={Footer} />
           <Route path="/logOut" component={LogOut} />
           <Route path="/logIn" component={LogIn} />*/}

@@ -11,6 +11,7 @@ var bodyParser = require('body-parser');
 var db = require('app/dbSetup');
 var routes = require('app/routes');
 var modules = require('app/routes/modules');
+var projects = require('app/routes/project');
 var app = express();
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
@@ -67,6 +68,7 @@ app.use(function(err, req, res, next) {
 //  Main App Page
 app.use('/rest', routes);
 app.use('/rest', modules);
+app.use('/rest', projects);
 
 
 

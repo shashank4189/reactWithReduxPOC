@@ -7,12 +7,14 @@ import signinReducer  from '../reducers/reducer-signIn'
 import userReducer  from '../reducers/reducer-user'
 import dashboardReducer  from '../reducers/reducer-dashboard'
 import moduleReducer  from '../reducers/reducer-modules'
+import projectReducer  from '../reducers/reducer-projects'
 import { reducer as formReducer}  from 'redux-form'
 
 const allReducer = combineReducers({
   users:userReducer,
   signIn:signinReducer,
   modules:moduleReducer,
+  projects:projectReducer,
   dashboard:dashboardReducer,
   form:formReducer
 

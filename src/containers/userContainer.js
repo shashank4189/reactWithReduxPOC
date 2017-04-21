@@ -11,7 +11,6 @@ import UserList from '../components/userComponent.jsx';
 
 
 function mapStateToProps(state){
-  console.log('mapStateToProps',state);
   return {
     users:state.users.users
   };
