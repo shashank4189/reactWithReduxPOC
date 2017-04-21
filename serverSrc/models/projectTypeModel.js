@@ -3,8 +3,9 @@
 
   let mongoose = require( 'mongoose' );
   let projectTypeSchema=new mongoose.Schema({
-    Title:{type:String,required:true}
+      ProjectType:{type:String,required:true},
+      Description:{type:String}
   });
 
-  module.exporst=mongoose.model('ProjectType',projectTypeSchema);
+  module.exporst=mongoose.model('ProjectTypes',projectTypeSchema);
 })();

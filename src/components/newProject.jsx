@@ -3,17 +3,17 @@ import {Link} from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 import {grey400,deepOrange500,green700,red700} from 'material-ui/styles/colors';
-//import PageBase from '../components/PageBase';
+import PageTitle from '../controlRender/pageTitle.jsx';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import { renderTextField }   from '../controlRender/renderTextField.jsx';
 import { renderSelectField } from '../controlRender/renderSelectField.jsx';
 import {renderDateField} from '../controlRender/renderDateField.jsx';
-/*import {addProject,addProjectSuccess,addProjectFailue} from '../actions/project.jsx';*/
-//import ReactMaterialUiNotifications from '../common/renderNotification.jsx';
+import {addProject,addProjectSuccess,addProjectFailure} from '../actions/projectAction.jsx';
+/*import ReactMaterialUiNotifications from '../controlRender/renderNotification.jsx';*/
 import Done from 'material-ui/svg-icons/action/done';
 import Close from 'material-ui/svg-icons/navigation/close';
 import moment from 'moment'
-//import Alert from '../common/renderAlert.jsx';
+/*import Alert from '../controlRender/renderAlert.jsx';*/
 //import asyncValidation from '../common/asyncValidation.jsx';
 
 const styles = {
@@ -37,9 +37,8 @@ const styles = {
 
 
 const validate = values => {
-    console.log('fwfwf',values);
     const errors = {}
-    const requiredFields = [ 'username', 'password']
+    const requiredFields = [ 'ProjectName', 'ProjectType','Description']
     requiredFields.forEach(field => {
         if (!values[ field ]) {
             errors[ field ] = 'Required'
@@ -59,13 +58,13 @@ class newProjects extends Component{
     }
 
     validateAndSave(values,dispatch) {
-        console.log('submit props are ' , this.props);
+        console.log('values',values);
         return dispatch(addProject(values)).
         then((response)=> {
             dispatch(addProjectSuccess(response.value.data.objdata))
         })
             .catch((error)=>{
-                dispatch(addProjectFailue(error))
+                dispatch(addProjectFailure(error))
             })
     }
 
@@ -74,21 +73,48 @@ class newProjects extends Component{
     }
 
 
+    renderNotification(success){
+        let props={
+            alertType:'success',
+            alertIcon:<Done />,
+            iconColor:green700,
+            alertMsg:success,
+            title:"Success"
+        };
+        if(success){
+            return(<Alert  {...props} />);
+        }
+    }
 
+    renderError(error){
+        let props={
+            alertType:'error',
+            alertIcon:<Close />,
+            iconColor:red700,
+            alertMsg:"Oops! a server error occured , please try again.",
+            title:"Error"
+        };
+        if(error){
+            return(<Alert  {...props} />);
+        }
+    }
     renderSource(source){
       return source.map((item)=>{
           return(
-              <MenuItem key={item.id} value={item.Title} primaryText={item.Title}/>
+              <MenuItem key={item._id} value={item.ProjectType} primaryText={item.ProjectType}/>
           )
       })
     }
 
     render(){
-        debugger;
         const {projectTypes} = this.props.projectTypeList;
+        //const {success,error} = this.props.newProject;
         const {asyncValidating,handleSubmit,pristine, reset, submitting, invalid} = this.props;
         return(
+         <PageTitle title="Add Project">
          <form onSubmit={handleSubmit(this.validateAndSave)}>
+            {/* {this.renderNotification(success)}
+             {this.renderError(error)}*/}
           <Field name="ProjectName" type="text" label="Project Title" fullWidth={true} component={renderTextField} />
 
           <Field name="Description" type="text" label="Description" fullWidth={true} component={renderTextField} />
@@ -101,13 +127,14 @@ class newProjects extends Component{
              <Field name="EndDate" label="End Date" fullWidth={true} component={renderDateField} />
 
              <div style={styles.buttons}>
-                 <Link to="/project">
+                 <Link to="/projects">
                      <RaisedButton label="Cancel"/>
                  </Link>
                  <RaisedButton  label="Save" style={styles.saveButton} disabled={ invalid ||submitting } type="submit" primary={true}/>
              </div>
+             {/*<ReactMaterialUiNotifications />*/}
          </form>
-
+         </PageTitle>
 
         )
 

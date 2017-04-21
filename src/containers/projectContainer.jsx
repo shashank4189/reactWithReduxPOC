@@ -4,9 +4,9 @@ import {fetchProjectType,fetchProjectTypeSuccess,fetchProjectTypeFailure} from '
 
 
 const mapStateToProps =(state)=> {
-    console.log('state.projects',state.projects)
     return {
-      projectTypeList:state.projects
+      projectTypeList:state.projects,
+      //newProject:state.projects,
     }
 }
 

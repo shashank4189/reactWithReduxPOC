@@ -4,19 +4,20 @@
 
 import {FETCH_PROJECT,FETCH_PROJECT_SUCCESS,FETCH_PROJECT_FAILURE
          , FETCH_PROJECT_TYPE,FETCH_PROJECT_TYPE_FAILURE,FETCH_PROJECT_TYPE_SUCCESS,ADD_PROJECT
-         , ADD_PROJECT_FAILURE,ADD_PROJECT_SUCCESS} from  '../actions/projectAction.jsx'
+         , ADD_PROJECT_FAILURE,ADD_PROJECT_SUCCESS,SEARCH_PROJECT,SEARCH_PROJECT_SUCCESS,
+          SEARCH_PROJECT_FAILURE  } from  '../actions/projectAction.jsx'
 
 
-const INITIAL_STATE ={projectTypes:[],projectList:[],error:null,loading:false}
+const INITIAL_STATE ={projectTypes:[],projectList:[],projects:[],error:null,loading:false}
 
 export default function(state=INITIAL_STATE, action){
     switch(action.type){
         case FETCH_PROJECT:
-            return;
+            return {...state, projects:[],error:null,loading:true};
         case FETCH_PROJECT_SUCCESS:
-            return;
+            return {...state, projects:action.payload,error:null,loading:false};
         case FETCH_PROJECT_FAILURE:
-            return;
+            return {...state, projects:[],error:null,loading:false};
         case FETCH_PROJECT_TYPE:
             return {...state, projectTypes:[],projectList: [],error:null,loading:true};
         case FETCH_PROJECT_TYPE_SUCCESS:
@@ -24,11 +25,17 @@ export default function(state=INITIAL_STATE, action){
         case FETCH_PROJECT_TYPE_FAILURE:
             return {...state, projectTypes:[],projectList:[],error:null,loading:false};
         case ADD_PROJECT:
-            return;
+            return {...state, success:null,error:null,loading:null};
         case ADD_PROJECT_SUCCESS:
-            return;
+            return {...state, success:action.payload,error:null,loading:null};
         case ADD_PROJECT_FAILURE:
-            return;
+            return {...state, success:null,error:null,loading:null};
+        case SEARCH_PROJECT:
+            return {...state, projects:[],error:null,loading:true};
+        case SEARCH_PROJECT_SUCCESS:
+            return {...state, projects:action.payload,error:null,loading:true};
+        case SEARCH_PROJECT_FAILURE:
+            return {...state, projects:[],error:null,loading:true};
         default:
             return state;
 

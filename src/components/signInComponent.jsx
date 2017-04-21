@@ -76,7 +76,6 @@ const styles = {
 };
 
 const validate = values => {
-  console.log('fwfwf',values);
   const errors = {}
   const requiredFields = [ 'username', 'password']
   requiredFields.forEach(field => {
@@ -94,7 +93,6 @@ const validateAndSignInUser=(values, dispatch)=> {
 
   return dispatch(onLogin(logInUser))
     .then((result) => {
-      console.log('result',result);
       if (result.value.Status !== "Success") {
         dispatch(onLoginFailure(result.value.data));
         throw new SubmissionError(result.value.data);
@@ -111,8 +109,6 @@ class signIn extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps.user' ,nextProps);
-    debugger;
     if (nextProps.signIn.status === 'authenticated' && !nextProps.signIn.error) {
       this.context.router.push('/');
     }

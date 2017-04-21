@@ -5,7 +5,6 @@ import {fetchModules,fetchModulesFailure,fetchModulesSuccess} from '../actions/m
 
 
 const mapStateToProps = (state)=>{
-    console.log('state.modules',state.modules);
     return {
         modules: state.modules.modules
     }
