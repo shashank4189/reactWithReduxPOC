@@ -5,7 +5,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import {pink500, grey200, grey500,blue700} from 'material-ui/styles/colors';
 import PageTitle from '../controlRender/pageTitle.jsx';
 import RenderList from '../controlRender/renderList.jsx';
-// import Pagination from '../common/renderPagination.jsx';
+import Pagination from '../controlRender/renderPagination.jsx';
 // import ProjectSort from './projectSortOptions.jsx';
 import moment from 'moment';
 import {searchProject,searchProjectSuccess,searchProjectFailure} from '../actions/projectAction.jsx';
@@ -47,14 +47,22 @@ const styles = {
 const searchProjects=(values,dispatch)=>{
     return dispatch(searchProject(values)).
     then((response)=>{
-        !response.error ? dispatch(searchProjectSuccess(response.value.data.objdata)):dispatch(searchProjectFailure(response.payload.data))
+        console.log('response.value.data',response.value.data);
+        !response.error ? dispatch(searchProjectSuccess(response.value.data)):dispatch(searchProjectFailure(response.payload.data))
     })
+}
+
+const aTableInfo={
+    CurPage:1,
+    RPP:5,
 }
 
 export default class projectList extends Component{
 
     constructor(props){
         super(props);
+        this.moveNext=this.moveNext.bind(this);
+        this.movePrev=this.movePrev.bind(this);
         this.renderSource=this.renderSource.bind(this);
     }
 
@@ -74,6 +82,22 @@ export default class projectList extends Component{
         return arr;
     }
 
+    moveNext(){
+        let pageInfo={
+            CurPage:this.props.projectList.curPage + 1,
+            RPP:5,
+        }
+        this.props.fetchProjectList(pageInfo);
+    }
+
+    movePrev(){
+        let pageInfo={
+            CurPage:this.props.projectList.curPage - 1,
+            RPP:5,
+        }
+        this.props.fetchProjectList(pageInfo);
+    }
+
 
     searchOption=[
         {
@@ -91,16 +115,21 @@ export default class projectList extends Component{
 
     componentWillMount(){
         this.props.fetchProjectList();
-    }
+        this.props.fetchProjectType();
 
+    }
+    
     renderSource(){
         return [{_id:1,Title:'Internal'},{_id:2,Title:'External'}]
     }
 
     render(){
         const {projects,error,loading}     = this.props.projectList;
+        const {projectTypes} = this.props.projectTypeList;
+
         return(
             <PageTitle title="Project List">
+                {projectTypes.length}
             <div>
                 <Link to="/newproject" >
                     <FloatingActionButton style={styles.floatingActionButton}  iconStyle={{backgroundColor: blue700}}>
@@ -108,22 +137,28 @@ export default class projectList extends Component{
                     </FloatingActionButton>
                 </Link>
                 <div className="row">
-                <div className="col-xs-12 col-sm-5 col-md-5 col-lg-3 m-b-15 ">
-                    <div className="row">
-                        <div className="col-xs-12 col-sm-5 col-md-5 col-lg-12 m-b-15 ">
-                            <RenderSearch searchOption={this.searchOption} onSearch={searchProjects} />
+                    <div className="col-xs-12 col-sm-5 col-md-5 col-lg-3 m-b-15 ">
+                        <div className="row">
+                            <div className="col-xs-12 col-sm-5 col-md-5 col-lg-12 m-b-15 ">
+                                <RenderSearch searchOption={this.searchOption} onSearch={searchProjects} />
+                            </div>
+                        </div>
+                        {/*<div className="row-fluid">
+                            <ProjectSort />
+                        </div>*/}
+                    </div>
+
+                    <div className="col-xs-12 col-sm-10 col-md-10 col-lg-9 m-b-15 ">
+                        <div className="row">
+                            <RenderList listTitle="Project List" data={this.makeProjectData(projects)} />
                         </div>
                     </div>
-                   {/* <div className="row-fluid">
-                        <ProjectSort />
-                    </div>*/}
+                    <div className="row">
+                        <div className="col-xs-12 col-sm-6 col-md-6 col-lg-3 m-b-15">
+                            <Pagination pageInfo={aTableInfo} moveNext={this.moveNext} movePrev={this.movePrev}  />
+                        </div>
+                    </div>
                 </div>
-                <div className="col-xs-12 col-sm-10 col-md-10 col-lg-9 m-b-15 ">
-                  <div className="row">
-                <RenderList listTitle="Project List" data={this.makeProjectData(projects)} />
-                  </div>
-                </div>
-            </div>
             </div>
             </PageTitle>
         )

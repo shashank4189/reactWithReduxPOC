@@ -15,7 +15,10 @@ const getProjects = ()=>{
 
 const searchProject = (data)=>{
     if(data) {
-        return Projects.find();
+        //const query =  new RegExp(".*" + data.ProjectName + ".*");
+        const query = {ProjectName: new RegExp(".*" + data.ProjectName + ".*","i")};
+        console.log(query);
+        return Projects.find(query);
     }
 }
 

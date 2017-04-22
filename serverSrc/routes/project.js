@@ -29,8 +29,9 @@ router.get('/getProjects',function(req, res, next){
 
 router.post('/search',function(req, res, next){
     console.log('req.Search',req.body);
-    ProjectService.searchProject()
+    ProjectService.searchProject(req.body)
         .then(function(data){
+            console.log('searched project', data);
             res.json(data);
         });
 

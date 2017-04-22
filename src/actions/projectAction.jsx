@@ -77,6 +77,7 @@ export function fetchProjectType(){
         method:'GET',
         Headers:[]
     });
+
     return{
         type:FETCH_PROJECT_TYPE,
         payload:request

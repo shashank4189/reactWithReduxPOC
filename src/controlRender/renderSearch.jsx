@@ -31,11 +31,11 @@ class renderSearch extends Component{
     }
 
     renderSource(source){
-        return source.map((item)=>{
-            return(
-                <MenuItem key={item._id} value={item.Title} primaryText={item.Title} />
-            )
-        })
+            return source.map((item) => {
+                return (
+                    <MenuItem key={item._id} value={item.Title} primaryText={item.Title}/>
+                )
+            })
     }
 
     renderSearchField(searchOption){
