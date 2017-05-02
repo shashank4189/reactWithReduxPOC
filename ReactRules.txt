@@ -6,3 +6,7 @@
 Mongo Rules -
 
 1- No capital letter should be in Mongo's collection name
+
+Eslint Rules -
+
+babel-eslint must install globally
