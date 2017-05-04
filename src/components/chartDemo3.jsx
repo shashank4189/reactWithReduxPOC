@@ -10,7 +10,74 @@ var chartSeries = [
     field: '5 to 13 Years'
   }
 ]
+var styles = {
+  stroke: '#d3d3d3',
+  markerend: 'url(#markerArrow)'
+
+}
+
+var medianStyles = {
+  stroke: '#661008',
+  markerend: 'url(#markerArrow)'
+
+}
+var linedata =[];
 const chartDemo3 = React.createClass({
+
+
+  bindgridLines(){
+
+    for (var i = 0; i <= 600 ;i=i+75){
+      linedata.push(
+        {x1:i,
+          y1:0,
+          x2:i,
+          y2:400,
+          axis:'v'
+        }) ;
+    }
+
+
+
+    for (var i = 0; i <= 400 ;i=i+80){
+      linedata.push(
+        {x1:0,
+          y1:i,
+          x2:600,
+          y2:i,
+          axis:'h'
+        }) ;
+    }
+
+    return linedata.map((item,index) => {
+      return (
+
+        <line key={index} x1={item.x1}  y1={item.y1} x2={item.x2} y2={item.y2} style={styles} />
+
+
+      )
+    })
+    /*return data;*/
+  },
+
+  bindText(){
+    var data='';
+    return linedata.map((item,index) => {
+       if(item.axis =='v') {
+         data = <text key={index} textAnchor="middle" x={item.x2}  y={item.y2}>{600-item.x2}</text>
+       }
+       else{
+         data = <text key={index} textAnchor="middle" x={item.x2}  y={item.y2+20}>{400-item.y2}</text>
+       }
+
+        return (data)
+    })
+    /*return data;*/
+  },
+  setAlert(){
+    alert('hello');
+  },
+
   render: function() {
     var chartData = [560000,
       580000,
@@ -75,14 +142,14 @@ const generalChartData =
     ,
     {"name":"Dayton Ebert","BMI":29.88,"age":20,"birthday":"1978-04-27T00:00:00.000Z","city":"West Wiley","married":true,"index":23}
   ]
+
+
 //require('json!../data/user_sample.json');
-    var styles = {
-      stroke: '#006600',
-     markerend: 'url(#markerArrow)'
 
-    }
 
-    var circleData = [{x:50,y:55}, {x:100,y:70}, {x:50,y:20}];
+    const circleData = [{x:50,y:30, product:'Footbal'} , {x:100,y:40, product:'Cricket'} , {x:50,y:90, product:'Badminton'} ,{x:170,y:120, product:'Chess'} ,{x:200,y:150, product:'Rugbi'},
+      {x:300,y:30, product:'Pool'} , {x:340,y:100, product:'Wrestling'} , {x:230,y:190, product:'Kabddi'} ,{x:370,y:200, product:'Tennis'} ,{x:290,y:60, product:'Carom'}];
+
     var textData = [{x:650,y:55}, {x:650,y:70}, {x:650,y:120}];
 
     var width = 700,
@@ -125,7 +192,7 @@ const generalChartData =
       yTickOrient1 = "left";
 
     return <div>
-      <svg width={width} height={height}>
+      <svg width={width} height={height} >
         <defs>
           <marker id="markerArrow" markerWidth="13" markerHeight="13" refX="2" refY="6" orient="auto">
             <path d="M2,2 L2,11 L10,6 L2,2" />
@@ -153,32 +220,40 @@ const generalChartData =
           xRange= {xRange}
           xScale= {xScale}
         />*/}
-        <defs>
-       {/*   <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
+        {/*<defs>
+          <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
             <path d="M 8 0 L 0 0 0 8" fill="none" stroke="gray" stroke-width="0.5"/>
-          </pattern>*/}
+          </pattern>
           <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
             <rect width="80" height="80" fill="url(#smallGrid)"/>
             <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1"/>
           </pattern>
-        </defs>
+        </defs>*/}
 
         <rect width="100%" height="100%" fill="url(#grid)" />
+        {this.bindgridLines()}
+         {/* <line x1="120" y1="0" x2="120" y2="400" style={styles} />*/}
+
+
+        }
 
     {/*    <path stroke="green" strokeWidth="2" fill="none" d="M20.8,51c0,0,20.8,18.2,21.5,18.2c0.6,0,33.3-38.5,33.3-38.5" />*/}
-        <line x1="120" y1="0" x2="120" y2="400" style={styles} />
-        <line x1="0" y1="230" x2="700" y2="230" style={styles} />
+        <line x1="120" y1="0" x2="120" y2="400" style={medianStyles} />
+        <line x1="0" y1="230" x2="600" y2="230" style={medianStyles} />
       {/*  <line x1="40" x2="260" y1="100" y2="100" stroke="#5184AF" stroke-width="30" stroke-linecap="round" stroke-dasharray="3, 50"/>*/}
 
 
         {circleData.map((data, index) =>
-          <circle cx={data.x} cy={data.y} r="3" fill="#6b74ff" stroke="#6b74ff" strokeWidth="2" />
+          <circle cx={data.x} cy={data.y}
+                  r="3" fill="#6b74ff" stroke="#6b74ff" strokeWidth="2" >
+            <title>{data.product}</title>
+          </circle>
         )}
 
-       {/* <circle cx="50" cy="55" r="3" fill="#6b74ff" stroke="#6b74ff" strokeWidth="2" />*/}
-        {textData.map((data, index) =>
+        {this.bindText()}
+        {/*{textData.map((data, index) =>
           <text textAnchor="middle" x={data.x} y={data.y}>Circle Text</text>
-        )}
+        )}*/}
 
       </svg>
     </div>

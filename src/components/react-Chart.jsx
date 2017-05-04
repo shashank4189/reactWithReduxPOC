@@ -7,8 +7,8 @@ var chart = new Chart;
     {x: 170, y: 300, z: 400}, {x: 140, y: 250, z: 280},
     {x: 150, y: 400, z: 500}, {x: 110, y: 280, z: 200}]*/
 
-const data = [{x:50,y:30} , {x:100,y:40} , {x:50,y:90} ,{x:170,y:120} ,{x:200,y:150},
-    {x:300,y:30} , {x:340,y:100} , {x:230,y:190} ,{x:370,y:200} ,{x:290,y:60}];
+const data = [{x:50,y:30, product:'Footbal'} , {x:100,y:40, product:'Cricket'} , {x:50,y:90, product:'Badminton'} ,{x:170,y:120, product:'Chess'} ,{x:200,y:150, product:'Rugbi'},
+    {x:300,y:30, product:'Pool'} , {x:340,y:100, product:'Wrestling'} , {x:230,y:190, product:'Kabddi'} ,{x:370,y:200, product:'Tennis'} ,{x:290,y:60, product:'Carom'}];
 
 
 const SimpleScatterChart = React.createClass({
@@ -20,31 +20,40 @@ const SimpleScatterChart = React.createClass({
         let width =canvas.width;
         /* ctx.fillStyle = 'rgb(200,0,0)';
          ctx.fillRect(10, 10, 55, 50);*/
+        // for drawing vertical line in gridline
         for (var i = 75; i <= 600 ;i=i+75){
         ctx.strokeStyle = '#d3d3d3';
         ctx.beginPath();
         ctx.moveTo(i, 0);
         ctx.lineTo(i, 600);
         ctx.stroke();
+          ctx.fillStyle = 'black';
+          ctx.font = '12px Arial';
+          ctx.fillText(600-i, i, 400-10);
        }
-
+      // for drawing Horizantal lines in gridline
         for (var i = 80; i <= 400 ;i=i+80){
             ctx.strokeStyle = '#d3d3d3';
             ctx.beginPath();
             ctx.moveTo(0, i);
             ctx.lineTo(600, i);
             ctx.stroke();
+          ctx.fillStyle = 'black';
+          ctx.font = '12px Arial';
+          ctx.fillText(400-i,600-20, i);
         }
 
      ctx.setLineDash([7, 3]);
+      // For vertical median line
         ctx.beginPath();
         ctx.moveTo(250,0);
         ctx.lineTo(250,600);
         ctx.strokeStyle = '#FF0000';
         ctx.stroke();
 
+      // For Horizantal median line
         ctx.beginPath();
-        ctx.moveTo(0,120);
+        ctx.moveTo(0,90);
         ctx.lineTo(600,120);
         ctx.strokeStyle = '#FF0000';
         ctx.stroke();
@@ -57,7 +66,7 @@ const SimpleScatterChart = React.createClass({
             ctx.fillStyle = 'black';
             ctx.font = '12px Arial';
             var Cordinae ="X1:" + ( data[i].x).toString()+" Y1:"+(data[i].y - 40).toString()
-            ctx.fillText(Cordinae, width -data[i].x, height-data[i].y);
+            ctx.fillText( data[i].product, width -data[i].x-20, height-data[i].y-15);
         }
 
 
