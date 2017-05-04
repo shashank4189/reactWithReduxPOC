@@ -69,7 +69,7 @@ class dashboard extends Component {
           <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 m-b-15 ">
             <BrowserUsage data={dummyData.dashBoardPage.browserUsage}/>
           </div>
-
+          <a href="http://localhost:8080/" target="_blank">click here</a>
         </div>
       </div>
     )

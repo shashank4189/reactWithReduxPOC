@@ -17,6 +17,7 @@ import ProjectList from './pageMediator/projectListMediator.jsx';
 /*import NewProject from './pageMediator/newProjectMediator.jsx';*/
 import LogOut from '../src/components/logOut.jsx';
 import Footer from '../src/components/footer.jsx';
+import SimpleScatterChart    from './components/react-Chart.jsx';
 
 injectTapEventPlugin();
 const store =configureStore();
@@ -29,6 +30,7 @@ const store =configureStore();
           <IndexRoute component={Dashboard} />
           <Route path="/newproject" component={NewProject} />
           <Route path="/projects" component={ProjectList} />
+          <Route path="/Chart" component={SimpleScatterChart} />
          {/* <Route path="/footer" component={Footer} />
           <Route path="/logOut" component={LogOut} />
           <Route path="/logIn" component={LogIn} />*/}
