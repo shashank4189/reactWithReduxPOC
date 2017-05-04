@@ -7,7 +7,8 @@ var chart = new Chart;
     {x: 170, y: 300, z: 400}, {x: 140, y: 250, z: 280},
     {x: 150, y: 400, z: 500}, {x: 110, y: 280, z: 200}]*/
 
-const data = [{x:50,y:30} , {x:100,y:60} , {x:150,y:90} ,{x:200,y:120} ,{x:250,y:150}];
+const data = [{x:50,y:30} , {x:100,y:40} , {x:50,y:90} ,{x:170,y:120} ,{x:200,y:150},
+    {x:300,y:30} , {x:340,y:100} , {x:230,y:190} ,{x:370,y:200} ,{x:290,y:60}];
 
 
 const SimpleScatterChart = React.createClass({
@@ -15,93 +16,56 @@ const SimpleScatterChart = React.createClass({
     componentDidMount() {
         let canvas = ReactDOM.findDOMNode(this.refs.canvas);
         let ctx = canvas.getContext('2d');
-
-       /* ctx.fillStyle = 'rgb(200,0,0)';
-        ctx.fillRect(10, 10, 55, 50);*/
-      ctx.strokeStyle = '#d3d3d3';
+        let height =canvas.height;
+        let width =canvas.width;
+        /* ctx.fillStyle = 'rgb(200,0,0)';
+         ctx.fillRect(10, 10, 55, 50);*/
+        for (var i = 75; i <= 600 ;i=i+75){
+        ctx.strokeStyle = '#d3d3d3';
         ctx.beginPath();
-        ctx.moveTo(50,0);
-        ctx.lineTo(50,300);
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i, 600);
         ctx.stroke();
-      ctx.fillStyle ='black';
-      ctx.font='12px Arial';
-      ctx.fillText("50", 300-20, 50);
+       }
 
+        for (var i = 80; i <= 400 ;i=i+80){
+            ctx.strokeStyle = '#d3d3d3';
+            ctx.beginPath();
+            ctx.moveTo(0, i);
+            ctx.lineTo(600, i);
+            ctx.stroke();
+        }
+
+     ctx.setLineDash([7, 3]);
         ctx.beginPath();
-        ctx.moveTo(100,0);
-        ctx.lineTo(100,300);
-        ctx.stroke();
-      ctx.fillStyle ='black';
-      ctx.font='12px Arial';
-      ctx.fillText(100, 300-20, 100);
-
-        ctx.beginPath();
-        ctx.moveTo(150,0);
-        ctx.lineTo(150,300);
-        ctx.stroke();
-      ctx.fillStyle ='black';
-      ctx.font='12px Arial';
-      ctx.fillText(150 , 150 +20, 300);
-
-        ctx.beginPath();
-        ctx.moveTo(200,0);
-        ctx.lineTo(200,300);
-        ctx.stroke();
-      ctx.fillStyle ='black';
-      ctx.font='12px Arial';
-      ctx.fillText(200 , 200 +20, 300);
-
-        ctx.beginPath();
-        ctx.moveTo(0,50);
-        ctx.lineTo(500,50);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(0,100);
-        ctx.lineTo(500,100);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(0,300);
-        ctx.lineTo(500,300);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(0,200);
-        ctx.lineTo(500,200);
-        ctx.stroke();
-
-
-        ctx.beginPath();
-        ctx.moveTo(0,300);
-        ctx.lineTo(500,300);
-        ctx.stroke();
-
-      ctx.setLineDash([7, 3]);
-        ctx.beginPath();
-        ctx.moveTo(70,0);
-        ctx.lineTo(70,500);
+        ctx.moveTo(250,0);
+        ctx.lineTo(250,600);
         ctx.strokeStyle = '#FF0000';
         ctx.stroke();
 
         ctx.beginPath();
         ctx.moveTo(0,120);
-        ctx.lineTo(500,120);
+        ctx.lineTo(600,120);
         ctx.strokeStyle = '#FF0000';
         ctx.stroke();
 
-        ctx.beginPath();
-        ctx.arc(70- 10, 70, 4, 0, 2 * Math.PI);
-        ctx.fillStyle='#6b74ff';
-        ctx.fill();
+        for (var i = 0; i < data.length ;i++) {
+            ctx.beginPath();
+            ctx.arc(width -data[i].x, height-data[i].y, 4, 0, 2 * Math.PI);
+            ctx.fillStyle = '#6b74ff';
+            ctx.fill();
+            ctx.fillStyle = 'black';
+            ctx.font = '12px Arial';
+            var Cordinae ="X1:" + ( data[i].x).toString()+" Y1:"+(data[i].y - 40).toString()
+            ctx.fillText(Cordinae, width -data[i].x, height-data[i].y);
+        }
 
 
     },
     render () {
         var styles = {
             position: 'absolute',
-            width: 700,
-            height: 500,
+
             border:'1px solid #d3d3d3'
         }
 
@@ -122,7 +86,7 @@ const SimpleScatterChart = React.createClass({
             </ScatterChart>*/}
 
 
-                <canvas ref="canvas" style={styles}  />
+                <canvas ref="canvas"   width="600" height="400" style={styles}  />
             </div>
 
         );
