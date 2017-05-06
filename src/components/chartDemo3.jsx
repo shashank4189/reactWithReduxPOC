@@ -16,8 +16,10 @@ var styles = {
 
 }
 
+
+
 var medianStyles = {
-  stroke: '#661008',
+  stroke: '#FF0000',
   markerend: 'url(#markerArrow)'
 
 }
@@ -26,7 +28,6 @@ const chartDemo3 = React.createClass({
 
 
   bindgridLines(){
-
     for (var i = 0; i <= 600 ;i=i+75){
       linedata.push(
         {x1:i,
@@ -74,11 +75,12 @@ const chartDemo3 = React.createClass({
     })
     /*return data;*/
   },
-  setAlert(){
+  setAlert: function(){
     alert('hello');
   },
 
   render: function() {
+
     var chartData = [560000,
       580000,
       600000,
@@ -144,13 +146,11 @@ const generalChartData =
   ]
 
 
-//require('json!../data/user_sample.json');
 
 
     const circleData = [{x:50,y:30, product:'Footbal'} , {x:100,y:40, product:'Cricket'} , {x:50,y:90, product:'Badminton'} ,{x:170,y:120, product:'Chess'} ,{x:200,y:150, product:'Rugbi'},
       {x:300,y:30, product:'Pool'} , {x:340,y:100, product:'Wrestling'} , {x:230,y:190, product:'Kabddi'} ,{x:370,y:200, product:'Tennis'} ,{x:290,y:60, product:'Carom'}];
 
-    var textData = [{x:650,y:55}, {x:650,y:70}, {x:650,y:120}];
 
     var width = 700,
       height = 400,
@@ -232,31 +232,38 @@ const generalChartData =
 
         <rect width="100%" height="100%" fill="url(#grid)" />
         {this.bindgridLines()}
-         {/* <line x1="120" y1="0" x2="120" y2="400" style={styles} />*/}
 
 
         }
 
     {/*    <path stroke="green" strokeWidth="2" fill="none" d="M20.8,51c0,0,20.8,18.2,21.5,18.2c0.6,0,33.3-38.5,33.3-38.5" />*/}
-        <line x1="120" y1="0" x2="120" y2="400" style={medianStyles} />
-        <line x1="0" y1="230" x2="600" y2="230" style={medianStyles} />
-      {/*  <line x1="40" x2="260" y1="100" y2="100" stroke="#5184AF" stroke-width="30" stroke-linecap="round" stroke-dasharray="3, 50"/>*/}
+        <line x1="120" y1="0" x2="120" y2="400" stroke-width="20" strokeDasharray="8, 5" style={medianStyles} />
+        <line x1="0" y1="230" x2="600" y2="230" stroke-width="20" strokeDasharray="8, 5" style={medianStyles} />
 
 
         {circleData.map((data, index) =>
-          <circle cx={data.x} cy={data.y}
+          <circle  cx={data.x} cy={data.y}
                   r="3" fill="#6b74ff" stroke="#6b74ff" strokeWidth="2" >
             <title>{data.product}</title>
           </circle>
         )}
+          <circle id="circle2" cx="234" cy="50"
+                  r="3" fill="#661008" stroke="#661008" strokeWidth="2"  onMouseOver={this.setAlert}>
 
+
+          </circle>
         {this.bindText()}
-        {/*{textData.map((data, index) =>
-          <text textAnchor="middle" x={data.x} y={data.y}>Circle Text</text>
-        )}*/}
+
+
 
       </svg>
+
     </div>
+
+
+
+
+
   }
 });
 export default chartDemo3;

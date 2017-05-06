@@ -1,3 +1,4 @@
+/*
 import { Chart } from 'react-google-charts';
 import React from 'react';
 
@@ -44,4 +45,4 @@ class chartDemo1 extends React.Component {
     );
   }
 }
-export default chartDemo1;
+export default chartDemo1;*/
